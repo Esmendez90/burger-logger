@@ -13,7 +13,7 @@ id int auto_increment,
 --    * **burger_name**: a string.
 burger_name varchar(30),
 --    * **devoured**: a boolean.
-devoured boolean,
+devoured boolean DEFAULT false,
 
 PRIMARY KEY (id)
 );

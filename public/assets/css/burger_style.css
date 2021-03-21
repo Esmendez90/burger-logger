@@ -1,0 +1,10 @@
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 2cm;
+}
+
+body {
+    background-color: rgb(89, 187, 166);
+    text-align: center;
+}

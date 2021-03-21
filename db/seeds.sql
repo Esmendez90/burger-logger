@@ -4,8 +4,8 @@ use burgers_db;
 -- with at least three entries.
 
 Insert into burgers (burger_name, devoured)
-values ("BLT burger", false),
+values ("BLT burger", true),
 ("Happy meal burger", true),
-("Giant burger", false);
+("Giant burger", true);
 
 select * from burgers;
