@@ -19,33 +19,41 @@ router.get("/", (req, res) => {
 });
 
 // POST (create) route
-router.post("/api/burgers", (req, res) => {
+router.post("/api/burgers/", (req, res) => {
+  
   burger.insertOne(
+    
     ["burger_name", "devoured"],
-    [req.body.name, req.body.devoured],
+    [req.body.burger_name, req.body.devoured],
     function (result) {
-      res.send(result);
+      
+      
       res.json({ id: result.insertId });
+   
     }
   );
 });
 
 // PUT (update) route
 router.put("api/burgers/:id", (req, res) => {
-  let condition = "id = " + req.params.id;
+  let id = req.params.id;
 
-  console.log("condition", condition);
+  console.log("This is ID = ", id);
 
-  burger.update({
-    devoured: req.body.devoured
-  }, condition, function(result) {
-    if (result.changedRows == 0) {
-
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
+  burger.update(
+    {
+      devoured: req.body.devoured,
+    },
+    id,
+    function (result) {
+      console.log("SHow me results = ", result);
+      if (result.changedRows == 0) {
+        return res.status(404).end();
+      } else {
+        res.status(200).end();
+      }
     }
-  })
+  );
 });
 
 // Export the `router` at the end of your file.

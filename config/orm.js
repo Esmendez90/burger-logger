@@ -54,19 +54,21 @@ let orm = {
       }
       cb(result);
     });
+    console.log([tableInput])
   },
   // * `insertOne()`
   insertOne: function (table, cols, vals, cb) {
+    console.log("values =",vals)
     let queryString = "INSERT INTO " + table;
-
+//insert into tablename (burger_name, devoured) values (boobie, true);
     queryString += " (";
     queryString += cols.toString();
-    queryString+= ") ";
+    queryString += ") ";
     queryString += "VALUES (";
     queryString += printQuestionMarks(vals.length);
     queryString += ") ";
 
-    console.log(query);
+    console.log(queryString);
 
     connection.query(queryString, vals, (err, result) => {
       if (err) {

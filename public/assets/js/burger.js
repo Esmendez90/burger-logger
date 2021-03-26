@@ -2,18 +2,20 @@
 $(function () {
   $(".create-form").on("submit", function (event) {
     event.preventDefault();
+
     console.log("click");
 
     let addburger = {
-      burger_name: $("#burger").val().trim(),
+      burger_name: $("#burger_name").val().trim(),
       devoured: 0,
     };
+    console.log(addburger);
 
-    $.ajax("api/burgers", {
+    $.ajax("/api/burgers/", {
       type: "POST",
       data: addburger,
     }).then(function () {
-      console.log("Added burger");
+      console.log(addburger);
       location.reload();
     });
   });
@@ -23,15 +25,14 @@ $(function () {
     let id = $(this).data("id");
     console.log(id);
     let devouredBurger = $(this).data("devouredBurger");
-
-    if (devouredBurger === 1) {
-      devouredBurger = 0;
-    } else {
-      devouredBurger = 1;
+    console.log(devouredBurger);
+    if ((devouredBurger = !true)) {
+      devouredBurger === true;
     }
     let devouredState = {
       devoured: devouredBurger,
     };
+    console.log(devouredState);
 
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
