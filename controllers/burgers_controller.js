@@ -15,45 +15,47 @@ router.get("/", (req, res) => {
     };
     console.log(hbsObject);
     res.render("index", hbsObject);
+   //res.json(hbsObject)
   });
 });
 
 // POST (create) route
 router.post("/api/burgers/", (req, res) => {
-  
   burger.insertOne(
-    
     ["burger_name", "devoured"],
     [req.body.burger_name, req.body.devoured],
     function (result) {
-      
-      
       res.json({ id: result.insertId });
-   
     }
   );
 });
 
 // PUT (update) route
-router.put("api/burgers/:id", (req, res) => {
-  let id = req.params.id;
+router.put("/api/burgers/:id", (req, res) => {
+  //  console.log("data", req.body, req.params);
 
-  console.log("This is ID = ", id);
+  let condition = "id=" + req.params.id;
 
-  burger.update(
+  burger.updateOne(
     {
       devoured: req.body.devoured,
     },
-    id,
+    condition,
     function (result) {
       console.log("SHow me results = ", result);
-      if (result.changedRows == 0) {
+      if (result.affectedRows == 0) {
         return res.status(404).end();
       } else {
         res.status(200).end();
       }
     }
   );
+});
+
+router.delete("/api/burgers/:id", (req,res) => {
+  burger.delete({ id: req.params.id }, data => {
+    res.json(data);
+  });
 });
 
 // Export the `router` at the end of your file.

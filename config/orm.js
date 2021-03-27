@@ -79,13 +79,19 @@ let orm = {
     });
   },
   // * `updateOne()`
-  update: function(table, objColVals, condition, cb) {
+  updateOne: function(table, objColVals, condition, cb) {
+
+
+console.log(condition)
+
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
     queryString += objToSql(objColVals);
     queryString += " WHERE ";
     queryString += condition;
+
+
 
     console.log(queryString);
     connection.query(queryString, function(err, result) {
@@ -95,6 +101,19 @@ let orm = {
 
       cb(result);
     });
+  },
+
+  // delete()
+  delete: function(table, filters, cb){
+    let query = "DELETE FROM ?? WHERE ?";
+
+    connection.query(query, [table, filters], (err, results) => {
+      //console.log("QUERY = ", query , table, filters);
+      if(err){
+        throw error;
+      }
+      cb(results);
+    })
   }
 };
 

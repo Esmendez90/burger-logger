@@ -8,3 +8,19 @@ body {
     background-color: rgb(89, 187, 166);
     text-align: center;
 }
+
+#burger_name {
+  margin: 5px;
+  height: 25px;
+  width: 200px;
+  border-radius: 2cm;
+}
+
+li {
+  display: inline-block;
+}
+
+button {
+  height: 30px;
+  border-radius: 1cm;
+}

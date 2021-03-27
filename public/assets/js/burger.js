@@ -26,9 +26,13 @@ $(function () {
     console.log(id);
     let devouredBurger = $(this).data("devouredBurger");
     console.log(devouredBurger);
-    if ((devouredBurger = !true)) {
-      devouredBurger === true;
+
+    if ((devouredBurger === true)) {
+      devouredBurger = false;
+    } else {
+      devouredBurger = true;
     }
+    
     let devouredState = {
       devoured: devouredBurger,
     };
@@ -45,8 +49,9 @@ $(function () {
 
   $(".delete-button").on("click", function (event) {
     event.preventDefault();
-
+    //console.log(event.target);
     let id = $(this).data("id");
+    
 
     // Send the DELETE request.
     $.ajax("/api/burgers/" + id, {
