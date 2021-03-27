@@ -1,20 +1,26 @@
 // Setup code to connect Node to MySQL
 const mysql = require("mysql");
+var connection;
 
-const connection = mysql.createConnection({
+if (process.env.JAWSDB_URL) {
+   connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+   connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     port: 3306,
     password: "Meg@deth6",
-    database: "burgers_db"
-});
+    database: "burgers_db",
+  });
+}
 
 // Make connection
 connection.connect((err) => {
-    if(err) {console.error("error connecting: " + err.stack);
+  if (err) {
+    console.error("error connecting: " + err.stack);
     return;
-}
-console.log("connected as id " + connection.threadId);
+  }
+  console.log("connected as id " + connection.threadId);
 });
 
 // Export connection for our ORM to use
